@@ -19,7 +19,7 @@ const GooglePlacesSearch = ({placeHolder="Start Location ?",onPress=(data,detail
       minLength={2}
       enablePoweredByContainer={false}
       query={{
-        key: "AIzaSyBASpdlbCdSdhQhBIm623PI7JLi8TlYOvg",
+        key: "",
         language: 'en',
       }}
      />
