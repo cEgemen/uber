@@ -1,30 +1,42 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TextInputComponent, View } from 'react-native'
 import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import 'react-native-get-random-values';
-import { v4 as uuidv4 } from 'uuid';
-import {API_URL, API_TOKEN} from "@env"
+import { app_colors, app_fontSize, app_fontWeight, app_radius, app_spaces } from '../constands/appSizes';
 
-
-const GooglePlacesSearch = ({onPress}) => {
+const GooglePlacesSearch = ({placeHolder="Start Location ?",onPress=(data,details=null)=>{}}) => {
+  
   return (
-     <GooglePlacesAutocomplete 
-         placeholder='Start Place'
+        <GooglePlacesAutocomplete 
+         placeholder={placeHolder}
          onPress={(data, details = null) => {
         // 'details' is provided when fetchDetails = true
          console.log(data, details);
       }}
-      debounce={400}
+      styles={styles}
       fetchDetails={true}
+      debounce={400}
       minLength={2}
+      enablePoweredByContainer={false}
       query={{
-        key: process.env.GOOGLE_API_KEY,
+        key: "AIzaSyBASpdlbCdSdhQhBIm623PI7JLi8TlYOvg",
         language: 'en',
       }}
      />
+   
   )
 }
 
 export default GooglePlacesSearch
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    textInput : {
+      backgroundColor:app_colors.light_gray,
+      color:app_colors.text,
+      borderRadius:app_radius.middle,
+      elevation:4
+   },
+   container : {
+     flex:0
+   }
+})

@@ -20,6 +20,13 @@ export const app_fontWeight = {
       high : 800
 }
 
+export const app_radius = {
+      small : 4 , 
+      middle : 8 , 
+      high : 16,
+      circle : (witdh) => witdh / 2
+}
+
 export const app_spaces = {
         small : 5,
         middle : 10 , 
