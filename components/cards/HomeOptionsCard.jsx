@@ -5,17 +5,18 @@ import placeHolderIcon from "../../assets/icons/warning.png"
 import rightArrowIcon from "../../assets/icons/right_arrow.png"
 import { app_colors, app_fontSize, app_fontWeight, app_radius } from '../../constands/appSizes'
 
-const HomeOptionsCard = ({text="",icon=null,onPress}) => {
+const HomeOptionsCard = ({text="",icon=null,onPress,disabled=false}) => {
+
   return (
-    <View style={styles.wrapper}>
+   <Pressable onPress={onPress} disabled={disabled} > 
+      <View style={[styles.wrapper,{opacity:disabled ? 0.4 : 1}]}>
         <Image source={icon !=  null ?  icon  : placeHolderIcon} style={styles.topIcon} />
         <Text style={styles.text} >{text}</Text> 
         <View style={styles.bottomIconWrapper}>
-         <Pressable onPress={onPress}>
-          <Image source={rightArrowIcon} style={styles.bottomIcon}/>
-         </Pressable>
+          <Image source={rightArrowIcon} style={[styles.bottomIcon]}/>
         </View>
-    </View>
+      </View>
+   </Pressable>
   )
 }
 

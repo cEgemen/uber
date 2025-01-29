@@ -1,17 +1,17 @@
-import { Image, StyleSheet, Text, TextInputComponent, View } from 'react-native'
+import { StyleSheet} from 'react-native'
 import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import 'react-native-get-random-values';
-import { app_colors, app_fontSize, app_fontWeight, app_radius, app_spaces } from '../constands/appSizes';
+import { app_colors,app_radius } from '../constands/appSizes';
+import { GOOGLE_API_KEY } from '../config/app_secret';
 
 const GooglePlacesSearch = ({placeHolder="Start Location ?",onPress=(data,details=null)=>{}}) => {
-  
+   
   return (
         <GooglePlacesAutocomplete 
          placeholder={placeHolder}
          onPress={(data, details = null) => {
-        // 'details' is provided when fetchDetails = true
-         console.log(data, details);
+           onPress(data,details)
       }}
       styles={styles}
       fetchDetails={true}
@@ -19,7 +19,7 @@ const GooglePlacesSearch = ({placeHolder="Start Location ?",onPress=(data,detail
       minLength={2}
       enablePoweredByContainer={false}
       query={{
-        key: "",
+        key: GOOGLE_API_KEY,
         language: 'en',
       }}
      />
