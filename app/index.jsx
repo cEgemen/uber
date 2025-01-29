@@ -16,8 +16,9 @@ export default function Index() {
   const searchOnPress = (data,details) => {
        const lat = details.geometry.location.lat
        const lon = details.geometry.location.lng
+       const title = "Origin"
        const description = data.description
-       dispatch(setStartLoction({lat,lon,description}))
+       dispatch(setStartLoction({lat,lon,title,description}))
   }
   
   const onPress = (path) => {

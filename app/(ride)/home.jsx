@@ -6,8 +6,7 @@ import { router } from 'expo-router'
 const Home = () => {
   return (
     <View>
-      <Text>Home</Text>
-      <Button onPress={() => {router.push("/details")}} title='go' />
+        
     </View>
   )
 }

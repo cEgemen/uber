@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-     startLocation:{lat:null,lon:null,description:null},
-     endLocation:{lat:null,lon:null,description:null}
+     startLocation:{lat:null,lon:null,title:null,description:null},
+     endLocation:{lat:null,lon:null,title:null,description:null}
 }
 
 const locationSlice = createSlice({
@@ -13,6 +13,7 @@ const locationSlice = createSlice({
           setStartLoction : (state,action) => {
                state.startLocation.lat = action.payload.lat;
                state.startLocation.lon = action.payload.lon;
+               state.startLocation.title = action.payload.title
                state.startLocation.description = action.payload.description;
           },
           setEndLocation : (state,action) => {

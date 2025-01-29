@@ -36,9 +36,9 @@ export default RideLayout
 
 const styles = StyleSheet.create({
        wrapper : {
-         height:500
+         height:"50%"
        },
        wrapper22 : {
-         height:500
+         height:"50%"
        },
 })
