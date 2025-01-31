@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { asyncThunkCreator, createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
@@ -17,7 +17,10 @@ const locationSlice = createSlice({
                state.startLocation.description = action.payload.description;
           },
           setEndLocation : (state,action) => {
-              
+               state.endLocation.description = action.payload.description;
+               state.endLocation.title = action.payload.title;
+               state.endLocation.lat = action.payload.lat;
+               state.endLocation.lon = action.payload.lon;
           }
      }
 })

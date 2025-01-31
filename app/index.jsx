@@ -12,7 +12,6 @@ export default function Index() {
   const {startLocation} = useSelector(state => state.loc)    
   const dispatch = useDispatch()
   const isDisable =  startLocation.lat === null || startLocation.lon === null; 
-  console.log("isDisable : ",isDisable)
   const searchOnPress = (data,details) => {
        const lat = details.geometry.location.lat
        const lon = details.geometry.location.lng
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
       fontWeight : app_fontWeight.high
   },
   optionsWrapper : {
-      flexDirection:"row",justifyContent:"space-evenly",marginVertical:"auto"
+      height:250,flexDirection:"row",justifyContent:"space-evenly",alignItems:"center",
   }
   
 });
