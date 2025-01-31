@@ -6,7 +6,7 @@ import MapView,{Marker,Polyline} from 'react-native-maps';
 import { useSelector } from 'react-redux';
 import { GOOGLE_API_KEY } from '../config/app_secret';
 import MapViewDirections from "react-native-maps-directions"
-import { app_colors } from '../constands/appSizes';
+
 
 const AppMap = () => {
   const mapRef = useRef(null)
@@ -14,7 +14,7 @@ const AppMap = () => {
   const [mapState , setMapState] = useState({startState : false , endState : false,directionState:false})
   /* const [routesData , setRoutesData] = useState(null) */
   
-
+ 
   useEffect(() => {
        if(((startLocation.lat !== null && startLocation.lon !== null) && (endLocation.lat === null && endLocation.lon === null)))
        {
