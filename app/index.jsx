@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Text, View,SafeAreaView } from 'react-native';
 import { app_colors, app_fontSize, app_fontWeight, app_spaces } from '../constands/appSizes';
 import GooglePlacesSearch from '../components/GooglePlacesSearch';
 import HomeOptionsCard from '../components/cards/HomeOptionsCard';

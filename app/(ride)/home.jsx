@@ -1,6 +1,6 @@
 
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { app_colors, app_fontSize, app_fontWeight, app_spaces } from '../../constands/appSizes'
 import GooglePlacesSearch from '../../components/GooglePlacesSearch'
 import { useDispatch } from 'react-redux'
@@ -8,10 +8,10 @@ import { setEndLocation } from '../../managment/slices/locationSlice'
 import RideHomeOptionCard from '../../components/cards/RideHomeOptionCard'
 import transportIcon from "../../assets/icons/transport.png"
 import lunchIcon from "../../assets/icons/lunch.png"
+import RideHomeModal from '../../components/modals/RideHomeModal'
 
 
 const Home = () => {
-  
   const dispatch = useDispatch()
   const searchPress = (data,details) => {
          const description = data.description;
@@ -23,12 +23,11 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-
         <View style={styles.headerWrapper}>
           <Text style={styles.header}>Hello UBER User </Text>
         </View> 
         <View style={styles.searchWrapper}>
-         <GooglePlacesSearch placeHolder='Where To ?' onPress={searchPress} />
+         <GooglePlacesSearch placeHolder='Where To ?' onPress={searchPress}  />
         </View>
         <FlatList 
             

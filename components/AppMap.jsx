@@ -8,7 +8,7 @@ import { GOOGLE_API_KEY } from '../config/app_secret';
 import MapViewDirections from "react-native-maps-directions"
 
 
-const AppMap = () => {
+const AppMap = ({onDirectionsCallback = () => {}}) => {
   const mapRef = useRef(null)
   const {startLocation,endLocation} = useSelector(state => state.loc)  
   const [mapState , setMapState] = useState({startState : false , endState : false,directionState:false})
@@ -120,6 +120,9 @@ const AppMap = () => {
                        apikey={GOOGLE_API_KEY}
                        strokeColor="blue"
                        strokeWidth={2}
+                       onReady={(args) => {
+                                onDirectionsCallback()
+                       }}
                   />
                  :
                    null

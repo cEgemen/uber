@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     imgRef : null,
     title : null,
-    description : null , 
     startLoc  : {lat : null , lon : null},
     endLoc  : {lat : null , lon : null},
 }

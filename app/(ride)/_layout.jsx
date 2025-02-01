@@ -1,20 +1,30 @@
 import { StyleSheet, Image, View, Pressable } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import AppMap from '../../components/AppMap'
 import { router, Stack } from 'expo-router'
 import menuIcon from "../../assets/icons/menu.png"
 import { app_colors, app_radius, app_spaces } from '../../constands/appSizes'
+import RideHomeModal from '../../components/modals/RideHomeModal'
 
 const RideLayout = () => {
-  
+  const [modalState , setModalState] = useState(false)
   const backHome = () => {
        router.push("/home")
   } 
+
+  const okPress = () => {
+ 
+  }
+
+  const cancelPress = () => {
+         
+  }
   
   return (
    <>
     <View style={styles.wrapper}>
-       <AppMap />
+      <RideHomeModal isVisible={modalState} closeVisible={() => {setModalState(false)}} title='INFO' description='Do you want to add to favorites ? ' cancelPress={cancelPress} okPress={okPress} /> 
+       <AppMap onDirectionsCallback={() => {setModalState(true)}} />
        <Pressable onPress={() => {
            backHome()
        }} style={styles.iconWrapper}>
