@@ -1,6 +1,6 @@
 
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import {FlatList, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 import { app_colors, app_fontSize, app_fontWeight, app_spaces } from '../../constands/appSizes'
 import GooglePlacesSearch from '../../components/GooglePlacesSearch'
 import { useDispatch } from 'react-redux'
@@ -8,7 +8,6 @@ import { setEndLocation } from '../../managment/slices/locationSlice'
 import RideHomeOptionCard from '../../components/cards/RideHomeOptionCard'
 import transportIcon from "../../assets/icons/transport.png"
 import lunchIcon from "../../assets/icons/lunch.png"
-import RideHomeModal from '../../components/modals/RideHomeModal'
 
 
 const Home = () => {

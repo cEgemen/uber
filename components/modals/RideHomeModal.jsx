@@ -6,7 +6,6 @@ import BaseModal from './BaseModal'
 import { app_colors, app_fontSize, app_fontWeight, app_spaces } from '../../constands/appSizes'
 
 export default function RideHomeModal({isVisible = true ,title = "",description = "", closeVisible = () => {},okPress = () => {} , cancelPress = () => {} ,modalBackgroundColor=null,modalViewStyle={}}) {
-  
     const CustomButton = ({onPress , label}) => {
          return <> 
                      <Pressable onPress={onPress} style={styles.button}>

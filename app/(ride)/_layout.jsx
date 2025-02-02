@@ -13,11 +13,17 @@ const RideLayout = () => {
   } 
 
   const okPress = () => {
- 
+      setModalState(false)
+      setTimeout(() => {
+        router.push("/saveLoc")
+                       },500)
   }
 
   const cancelPress = () => {
-         
+         setModalState(false)
+         setTimeout(() => {
+          router.push("/details")
+                          },500)
   }
   
   return (
@@ -47,6 +53,14 @@ const RideLayout = () => {
                          headerShown : false
                      }
                  }
+              />
+              <Stack.Screen 
+                  name='saveLoc'
+                  options={
+                       {
+                          headerShown : false
+                       }
+                   }
               />
          </Stack>
     </View>

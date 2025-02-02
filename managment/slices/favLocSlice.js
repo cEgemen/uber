@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    imgRef : null,
     title : null,
-    startLoc  : {lat : null , lon : null},
-    endLoc  : {lat : null , lon : null},
+    startLocation  : {lat : null , lon : null},
+    endLocation  : {lat : null , lon : null},
 }
 
 const favLocSlice = createSlice({
@@ -12,8 +11,10 @@ const favLocSlice = createSlice({
        name : "favLoc",
        reducers : {
            saveFavLoc : (state  ,  action) => {
-
-           }
+               state.title = action.payload.title;
+               state.startLocation = {lat : action.payload.startLoc.lat,lon:action.payload.startLoc.lon};
+               state.endLocation = {lat : action.payload.endLoc.lat,lon:action.payload.endLoc.lon};
+            }
        }
 })
 
