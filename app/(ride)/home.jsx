@@ -5,10 +5,12 @@ import { app_colors, app_fontSize, app_fontWeight, app_spaces } from '../../cons
 import GooglePlacesSearch from '../../components/GooglePlacesSearch'
 import { useDispatch, useSelector } from 'react-redux'
 import { setEndLocation } from '../../managment/slices/locationSlice'
-import RideHomeOptionCard from '../../components/cards/RideHomeOptionCard'
+import RideHomeOptionCard from '../../components/buttons/RideHomeOptionButton'
 import transportIcon from "../../assets/icons/transport.png"
 import lunchIcon from "../../assets/icons/lunch.png"
 import FavLocCard from '../../components/cards/FavLocCard'
+import { Route } from 'expo-router/build/Route'
+import { router } from 'expo-router'
 
 
 const Home = () => {
@@ -21,11 +23,15 @@ const Home = () => {
          const lon = details.geometry.location.lng
          dispatch(setEndLocation({description,title,lat,lon}))
   }
-  console.log("favList : ",favList)
+  
+  const onPress = () => {
+      router.push("/details")
+  }
+
   return (
     <View style={styles.container}>
         <View style={styles.headerWrapper}>
-          <Text style={styles.header}>Hello UBER User </Text>
+          <Text style={styles.header}>Hello , Dear User </Text>
         </View> 
         <View style={styles.searchWrapper}>
          <GooglePlacesSearch placeHolder='Where To ?' onPress={searchPress}  />
@@ -40,7 +46,7 @@ const Home = () => {
             }}
         />
         <View style = {styles.bottomWrapper}>
-               <RideHomeOptionCard icon={transportIcon} isActive />
+               <RideHomeOptionCard icon={transportIcon} isActive onPress={onPress} />
                <RideHomeOptionCard icon={lunchIcon} />
         </View>
     </View>

@@ -5,8 +5,12 @@ import { router, Stack } from 'expo-router'
 import menuIcon from "../../assets/icons/menu.png"
 import { app_colors, app_radius, app_spaces } from '../../constands/appSizes'
 import RideHomeModal from '../../components/modals/RideHomeModal'
+import { useDispatch } from 'react-redux'
+import { setLocationData } from '../../managment/slices/locationSlice'
+
 
 const RideLayout = () => {
+  const dispatch = useDispatch()
   const [modalState , setModalState] = useState(false)
   const backHome = () => {
        router.push("/home")
@@ -25,12 +29,17 @@ const RideLayout = () => {
           router.push("/details")
                           },500)
   }
+
+  const onDirectionsCallback = ({ duration, distance }) => {
+      dispatch(setLocationData({duration : duration,distance:distance}))
+      setModalState(true)
+  }
   
   return (
 <>
   <View style={styles.wrapper}>
       <RideHomeModal isVisible={modalState} closeVisible={() => {setModalState(false)}} title='INFO' description='Do you want to add to favorites ? ' cancelPress={cancelPress} okPress={okPress} /> 
-       <AppMap onDirectionsCallback={() => {setModalState(true)}} />
+       <AppMap onDirectionsCallback={onDirectionsCallback} />
        <Pressable onPress={() => {
            backHome()
        }} style={styles.iconWrapper}>

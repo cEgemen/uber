@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
      startLocation:{lat:null,lon:null,title:null,description:null},
-     endLocation:{lat:null,lon:null,title:null,description:null}
+     endLocation:{lat:null,lon:null,title:null,description:null},
+     locationData : {duration : null , distance : null}
 }
 
 const locationSlice = createSlice({
@@ -21,10 +22,14 @@ const locationSlice = createSlice({
                state.endLocation.title = action.payload.title;
                state.endLocation.lat = action.payload.lat;
                state.endLocation.lon = action.payload.lon;
+          },
+          setLocationData : (state , action) => {
+               state.locationData.distance = action.payload.distance;
+               state.locationData.duration = action.payload.duration;
           }
      }
 })
 
- export  const {setEndLocation,setStartLoction} = locationSlice.actions
+ export  const {setEndLocation,setStartLoction,setLocationData} = locationSlice.actions
 
  export default locationSlice.reducer

@@ -8,7 +8,7 @@ import { GOOGLE_API_KEY } from '../config/app_secret';
 import MapViewDirections from "react-native-maps-directions"
 
 
-const AppMap = ({onDirectionsCallback = () => {}}) => {
+const AppMap = ({onDirectionsCallback = ({duration,distance}) => {}}) => {
   const mapRef = useRef(null)
   const {startLocation,endLocation} = useSelector(state => state.loc)  
   const [mapState , setMapState] = useState({startState : false , endState : false,directionState:false})
@@ -23,7 +23,7 @@ const AppMap = ({onDirectionsCallback = () => {}}) => {
                 setMapState(oldState => {
                     return {...oldState,startState:true}
                 })
-            },1550)
+            },1600)
             mapRef.current.animateToRegion({
                 latitude: startLocation.lat,
                 longitude: startLocation.lon,
@@ -38,7 +38,7 @@ const AppMap = ({onDirectionsCallback = () => {}}) => {
             setMapState(oldState => {
                 return {...oldState,endState:true}
             })
-        },1250)
+        },1300)
         mapRef.current.animateToRegion({
             latitude: endLocation.lat,
             longitude: endLocation.lon,
@@ -121,7 +121,7 @@ const AppMap = ({onDirectionsCallback = () => {}}) => {
                        strokeColor="blue"
                        strokeWidth={2}
                        onReady={(args) => {
-                                onDirectionsCallback()
+                                onDirectionsCallback({distance:args.distance,duration:args.duration})
                        }}
                   />
                  :
