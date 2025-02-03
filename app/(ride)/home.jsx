@@ -3,15 +3,17 @@ import {FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { app_colors, app_fontSize, app_fontWeight, app_spaces } from '../../constands/appSizes'
 import GooglePlacesSearch from '../../components/GooglePlacesSearch'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setEndLocation } from '../../managment/slices/locationSlice'
 import RideHomeOptionCard from '../../components/cards/RideHomeOptionCard'
 import transportIcon from "../../assets/icons/transport.png"
 import lunchIcon from "../../assets/icons/lunch.png"
+import FavLocCard from '../../components/cards/FavLocCard'
 
 
 const Home = () => {
   const dispatch = useDispatch()
+  const {favList} = useSelector(state => state.favLoc)
   const searchPress = (data,details) => {
          const description = data.description;
          const title = "Destination";
@@ -19,7 +21,7 @@ const Home = () => {
          const lon = details.geometry.location.lng
          dispatch(setEndLocation({description,title,lat,lon}))
   }
-
+  console.log("favList : ",favList)
   return (
     <View style={styles.container}>
         <View style={styles.headerWrapper}>
@@ -29,7 +31,13 @@ const Home = () => {
          <GooglePlacesSearch placeHolder='Where To ?' onPress={searchPress}  />
         </View>
         <FlatList 
-            
+            data={favList}
+            keyExtractor={((item,index) => index)}
+            renderItem={({item,index}) => {
+                 return <>
+                            <FavLocCard item={item} />
+                        </>
+            }}
         />
         <View style = {styles.bottomWrapper}>
                <RideHomeOptionCard icon={transportIcon} isActive />

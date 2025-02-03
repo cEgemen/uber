@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View,SafeAreaView, FlatList } from 'react-native';
 import { app_colors, app_fontSize, app_fontWeight, app_spaces } from '../constands/appSizes';
 import GooglePlacesSearch from '../components/GooglePlacesSearch';
 import HomeOptionsCard from '../components/cards/HomeOptionsCard';
@@ -7,9 +7,11 @@ import lunchIcon from "../assets/icons/lunch.png"
 import { router } from 'expo-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setStartLoction } from '../managment/slices/locationSlice';
+import FavLocCard from '../components/cards/FavLocCard';
 
 export default function Index() {
   const {startLocation} = useSelector(state => state.loc)    
+  const {favList} = useSelector(state => state.favLoc)
   const dispatch = useDispatch()
   const isDisable =  startLocation.lat === null || startLocation.lon === null; 
   const searchOnPress = (data,details) => {
@@ -31,6 +33,17 @@ export default function Index() {
                        <Text style={styles.headerText}>UBER</Text>
                 </View>
                  <GooglePlacesSearch onPress={searchOnPress} /> 
+                <View style={styles.favLocWrapper}>
+                    <FlatList 
+                        data={favList}
+                        keyExtractor={(item,index) => index}
+                        renderItem={({item}) => {
+                             return <>
+                                       <FavLocCard item={item} />
+                                    </>
+                        }}
+                    />
+                </View>
                 <View style={styles.optionsWrapper}>
                    <HomeOptionsCard icon={trasportIcon} text='Get a ride' onPress={() => {onPress("/home")}} disabled={ isDisable} />
                    <HomeOptionsCard icon={lunchIcon} text='Order food'  onPress={() => {onPress("/")}} disabled={isDisable} />
@@ -52,6 +65,9 @@ const styles = StyleSheet.create({
   headerText : {
       fontSize : app_fontSize.high,
       fontWeight : app_fontWeight.high
+  },
+  favLocWrapper: {
+     marginVertical:app_spaces.middle
   },
   optionsWrapper : {
       height:250,flexDirection:"row",justifyContent:"space-evenly",alignItems:"center",

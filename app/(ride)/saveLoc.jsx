@@ -26,7 +26,7 @@ const SaveLoc = ({header}) => {
          ToastAndroid.showWithGravity("Title not must empty",ToastAndroid.LONG,ToastAndroid.BOTTOM)
       }
       else {
-          dispatch(saveFavLoc({title : titleState.title,startLocation:{lat:startLocation.lat,lon:startLocation.lon},endLocation:{lat:endLocation.lat,lon:endLocation.lon}}))
+          dispatch(saveFavLoc({title : titleState.title,startLoc:{lat:startLocation.lat,lon:startLocation.lon,description:startLocation.description},endLoc:{lat:endLocation.lat,lon:endLocation.lon,description:endLocation.description}}))
           router.replace("/details")
       }
   }
@@ -39,7 +39,9 @@ const SaveLoc = ({header}) => {
         <View style={styles.centerWrapper}>
          <View style = {styles.inputWrapper}>
               <Text style = {styles.label}>Title</Text>
-              <TextInput placeholder='Enter Title' style={styles.input} value={titleState.title}  onChangeText={(text) => {setTitleState(text)}} />
+              <TextInput placeholder='Enter Title' style={styles.input} value={titleState.title}  onChangeText={(text) => {setTitleState(oldState => {
+                  return {title : text}
+              })}} />
          </View>
          <View style = {styles.inputWrapper}>
               <Text style = {styles.label}>Origin Location</Text>
@@ -61,7 +63,7 @@ export default SaveLoc
 
 const styles = StyleSheet.create({
       container : {
-          height:"50%",backgroundColor:app_colors.dark_gray,padding:app_spaces.small
+          flex:1,backgroundColor:app_colors.background,padding:app_spaces.small
       },
       headerWrapper : {
           paddingVertical : app_spaces.small,alignItems:"center",borderBottomColor:app_colors.light_gray,borderBottomWidth:1
@@ -79,12 +81,12 @@ const styles = StyleSheet.create({
          fontSize:app_fontSize.small,fontWeight:app_fontWeight.middle
       },
       input : {
-            backgroundColor:app_colors.light_gray,borderRadius:8
+            backgroundColor:app_colors.neutral_gray,borderRadius:8
       },
       buttonWrapper : {
             height:50,alignItems:"center",justifyContent:"center",borderTopColor:app_colors.light_gray,borderTopWidth:1
       },
       button : {
-           width:"50%" , height:40 , backgroundColor:app_colors.light_gray  , justifyContent:"center",alignItems:"center",borderRadius:8
+           width:"50%" , height:40 , backgroundColor:app_colors.neutral_gray  , justifyContent:"center",alignItems:"center",borderRadius:8
       }
 })

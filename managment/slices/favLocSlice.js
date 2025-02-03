@@ -1,19 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    title : null,
-    startLocation  : {lat : null , lon : null},
-    endLocation  : {lat : null , lon : null},
-}
-
+const initialState = {favList : []}
 const favLocSlice = createSlice({
        initialState,
        name : "favLoc",
        reducers : {
            saveFavLoc : (state  ,  action) => {
-               state.title = action.payload.title;
-               state.startLocation = {lat : action.payload.startLoc.lat,lon:action.payload.startLoc.lon};
-               state.endLocation = {lat : action.payload.endLoc.lat,lon:action.payload.endLoc.lon};
+               const  title = action.payload.title;
+               const  startLocation = {lat : action.payload.startLoc.lat,lon:action.payload.startLoc.lon,description:action.payload.startLoc.description};
+               const  endLocation = {lat : action.payload.endLoc.lat,lon:action.payload.endLoc.lon,description:action.payload.endLoc.description};
+               state.favList = [...state.favList,{title,startLocation,endLocation}]
             }
        }
 })

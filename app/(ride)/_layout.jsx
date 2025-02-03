@@ -1,4 +1,4 @@
-import { StyleSheet, Image, View, Pressable } from 'react-native'
+import { StyleSheet, Image, View, Pressable, KeyboardAvoidingView, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import AppMap from '../../components/AppMap'
 import { router, Stack } from 'expo-router'
@@ -27,8 +27,8 @@ const RideLayout = () => {
   }
   
   return (
-   <>
-    <View style={styles.wrapper}>
+<>
+  <View style={styles.wrapper}>
       <RideHomeModal isVisible={modalState} closeVisible={() => {setModalState(false)}} title='INFO' description='Do you want to add to favorites ? ' cancelPress={cancelPress} okPress={okPress} /> 
        <AppMap onDirectionsCallback={() => {setModalState(true)}} />
        <Pressable onPress={() => {
@@ -63,9 +63,9 @@ const RideLayout = () => {
                    }
               />
          </Stack>
-    </View>
-   </> 
-    
+    </View> 
+</>
+   
   )
 }
 
@@ -73,10 +73,10 @@ export default RideLayout
 
 const styles = StyleSheet.create({
        wrapper : {
-         height:"50%"
+         height:"40%"
        },
        wrapper22 : {
-         height:"50%"
+         height:"60%"
        },
        iconWrapper : {
            position : "absolute", 
