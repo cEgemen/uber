@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {saveFavLoc} from "../../managment/slices/favLocSlice"
 import { router } from 'expo-router'
 
-const SaveLoc = ({header}) => {
+const SaveLoc = () => {
   
   const CustomButtom = ({label,onPress}) => {
        return <>
@@ -34,7 +34,7 @@ const SaveLoc = ({header}) => {
   return (
     <View style = {styles.container}>
         <View style = {styles.headerWrapper}>
-              <Text style = {styles.header} numberOfLines={1}>HEADER</Text>
+              <Text style = {styles.header} numberOfLines={1}>Save Search</Text>
         </View>
         <View style={styles.centerWrapper}>
          <View style = {styles.inputWrapper}>

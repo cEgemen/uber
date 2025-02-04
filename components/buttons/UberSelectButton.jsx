@@ -5,10 +5,10 @@ import { app_colors, app_fontSize, app_fontWeight } from '../../constands/appSiz
 
 const UberSelectButton = ({uberType="",cost="",icon,isSelect,onPress}) => {
   return (
-    <Pressable style={[styles.wrapper,{borderWidth:isSelect ? 1 : 0,elevation:isSelect ? 4 : 0}]} onPress={onPress}>
+    <Pressable style={[styles.wrapper,{borderWidth:isSelect ? 2 : 0,elevation:isSelect ? 4 : 0,backgroundColor:isSelect ? app_colors.neutral_gray : app_colors.light_gray}]} onPress={onPress}>
       <Image style={styles.icon} source={icon} />
       <View style={styles.textWrapper}>
-        <Text style={styles.text}>{uberType}  {cost}$</Text>
+        <Text style={styles.text}>{uberType}  {cost} $</Text>
       </View> 
     </Pressable>
   )
