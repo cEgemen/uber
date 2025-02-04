@@ -9,7 +9,7 @@ import car3 from "../../assets/images/car3.png"
 import RideDetailModal from '../../components/modals/RideDetailModal'
 
 const Details = () => {
-  const [modalState , setModalState] = useState(true)
+  const [modalState , setModalState] = useState(false)
   const {locationData,endLocation,startLocation} = useSelector(state => state.loc)
   const ubers = [
   {type:"UberX", baseFare: 5, costPerKm: 2, costPerMin: 0.5 },
@@ -31,7 +31,13 @@ const Details = () => {
       })
   }
 
-  
+  const selectOnPress = () => {
+      setModalState(true)
+  }
+ 
+  const modalOnPress = () => {
+      setModalState(false)
+  }
 
   return (
     <View style={styles.wrapper}>
@@ -39,22 +45,13 @@ const Details = () => {
              <Text style={styles.header}>⌛ {locationData.duration} dk</Text>
              <Text style={styles.header}>🛤️ {locationData.distance} km</Text>
        </View>
-       <View style={styles.detailsWrapper}>
-          <View style={styles.detailContainer}>
-             <Text></Text>
-             <Text></Text>
-          </View>
-          <View style={styles.detailContainer}>
-             <Text>💵 </Text>
-             <Text></Text>
-          </View>
-       </View>
+     
        <View style={styles.buttonsWrapper}>
            <UberSelectButton uberType={ubers[0].type} cost={calCost(ubers[0].baseFare,ubers[0].costPerKm,ubers[0].costPerMin)}  icon={car1} isSelect={0 === uberState.selectIndex} onPress={() => {onPress(0)}} />
            <UberSelectButton uberType={ubers[1].type} cost={calCost(ubers[1].baseFare,ubers[1].costPerKm,ubers[1].costPerMin)} icon={car2} isSelect={1 === uberState.selectIndex} onPress={() => {onPress(1)}}/>
            <UberSelectButton uberType={ubers[2].type} cost={calCost(ubers[2].baseFare,ubers[2].costPerKm,ubers[2].costPerMin)} icon={car3} isSelect={2 === uberState.selectIndex} onPress={() => {onPress(2)}}/>
        </View>
-       <Pressable style={styles.buttonWrapper}>
+       <Pressable style={styles.buttonWrapper} onPress={selectOnPress}>
           <Text style={styles.buttonLabel}>
               Select {type}
           </Text>
@@ -65,6 +62,7 @@ const Details = () => {
        isVisible={modalState} 
        closeVisible={() => { setModalState(false)}} 
        modalViewStyle={{height : "auto"}} 
+       confirmPress={modalOnPress}
        />
     </View>
   )
@@ -83,12 +81,7 @@ const styles = StyleSheet.create({
     header : {
         fontSize:app_fontSize.small,fontWeight:app_fontWeight.middle,alignItems:"center",padding:app_spaces.small,backgroundColor:app_colors.light_gray,borderRadius:8,elevation:4
     },
-    detailsWrapper : {
-       flexDirection : "column",
-    },
-    detailContainer : {
-       flexDirection:"row",alignItems:"center",justifyContent:"space-around"
-    },
+    
     buttonsWrapper : {
        marginVertical:app_spaces.high,gap:app_spaces.high
     },

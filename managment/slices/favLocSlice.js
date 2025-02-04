@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {favList : []}
+const initialState = {favList : [{ title :  "Bus station" , startLocation :  {description: "London, UK", lat: 51.5072178, lon: -0.1275862}
+    ,  endLocation :  {description: "London Bridge Station, London, UK", lat: 51.5060748, lon: -0.08741970000000002}}]}
+    
 const favLocSlice = createSlice({
        initialState,
        name : "favLoc",

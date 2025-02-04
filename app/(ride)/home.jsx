@@ -9,7 +9,6 @@ import RideHomeOptionCard from '../../components/buttons/RideHomeOptionButton'
 import transportIcon from "../../assets/icons/transport.png"
 import lunchIcon from "../../assets/icons/lunch.png"
 import FavLocCard from '../../components/cards/FavLocCard'
-import { Route } from 'expo-router/build/Route'
 import { router } from 'expo-router'
 
 
@@ -28,6 +27,10 @@ const Home = () => {
       router.push("/details")
   }
 
+  const favCardPress = (index) => {
+       router.replace({pathname:"/showFavLocToMap",params:{id:index,backPath : "/home"}})
+  }
+
   return (
     <View style={styles.container}>
         <View style={styles.headerWrapper}>
@@ -37,11 +40,12 @@ const Home = () => {
          <GooglePlacesSearch placeHolder='Where To ?' onPress={searchPress}  />
         </View>
         <FlatList 
+            style={styles.cardWrapper}
             data={favList}
             keyExtractor={((item,index) => index)}
             renderItem={({item,index}) => {
                  return <>
-                            <FavLocCard item={item} />
+                            <FavLocCard item={item} onPress={() => {favCardPress(index)}}  />
                         </>
             }}
         />
@@ -65,6 +69,9 @@ const styles = StyleSheet.create({
      },
      header : {
         fontSize:app_fontSize.middle,fontWeight:app_fontWeight.middle,
+     },
+     cardWrapper : {
+          width:"100%",marginVertical:app_spaces.middle
      },
      searchWrapper : {
           width:"100%"

@@ -37,9 +37,11 @@ export default function Index() {
                     <FlatList 
                         data={favList}
                         keyExtractor={(item,index) => index}
-                        renderItem={({item}) => {
+                        renderItem={({item,index}) => {
                              return <>
-                                       <FavLocCard item={item} />
+                                       <FavLocCard item={item} onPress={() => {
+                                              router.push({pathname:"/showFavLocToMap",params:{id:index,backPath:"/"}})    
+                                       }} />
                                     </>
                         }}
                     />

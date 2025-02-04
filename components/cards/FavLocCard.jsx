@@ -6,9 +6,9 @@ import rightArrowIcon from "../../assets/icons/right_arrow.png"
 import dottedWayIcon from "../../assets/icons/dottedWay.png"
 import { app_colors, app_fontSize, app_fontWeight, app_radius, app_spaces } from '../../constands/appSizes'
 
-const FavLocCard = ({item}) => {
+const FavLocCard = ({item,onPress = () => {}}) => {
   return (
-    <Pressable style={styles.wrapper} onPress={() => {}}>
+    <Pressable style={styles.wrapper} onPress={onPress}>
             <View style={styles.headerWrapper}>
                <Text style={styles.header} numberOfLines={1}>
               📕 {item.title}
@@ -36,7 +36,7 @@ export default FavLocCard
 
 const styles = StyleSheet.create({
     wrapper : {
-       width:"100%",backgroundColor:app_colors.light_gray,padding:app_spaces.middle,borderRadius:8,borderColor:app_colors.text,borderWidth:1
+       width:"100%",backgroundColor:app_colors.light_gray,padding:app_spaces.middle,marginBottom:app_spaces.middle,borderRadius:8,borderColor:app_colors.text,borderWidth:1
     },
     headerWrapper : {
         paddingLeft:app_spaces.small,marginBottom:app_spaces.small

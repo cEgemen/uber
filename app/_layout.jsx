@@ -26,6 +26,12 @@ export default function RootLayout() {
              }
           }
        />
+       <Stack.Screen 
+           name='showFavLocToMap'
+           options={{
+               headerShown:false
+           }}
+       />
      </Stack>
    </Provider> 
    

@@ -6,7 +6,8 @@ import { app_colors, app_fontSize, app_fontWeight, app_spaces } from '../../cons
 import locationOnIcon from "../../assets/icons/locationOn.png"
 import dottedWayIcon from "../../assets/icons/dottedWay.png"
 
-const RideDetailModal = ({isVisible = false , closeVisible = () => {},modalBackgroundColor=null,modalViewStyle={},children,title="Info",locationData={startDesc:null,endDesc:null},uberData={cost:null,type:null,duration:null,distance:null}}) => {
+const RideDetailModal = ({
+    isVisible = false , closeVisible = () => {},modalBackgroundColor=null,modalViewStyle={},title="Info",locationData={startDesc:null,endDesc:null},uberData={cost:null,type:null,duration:null,distance:null,},confirmPress = () => {}}) => {
 
   const CustomButton = ({onPress , label}) => {
       return <>
@@ -25,6 +26,16 @@ const RideDetailModal = ({isVisible = false , closeVisible = () => {},modalBackg
                     {title}
             </Text>
         </View>
+        <View style={styles.datasWrapper}>
+          <View style={styles.dataContainer}>
+             <Text style={styles.dataText}>⌛ {uberData.duration} dk </Text>
+             <Text style={styles.dataText}>🛞 {uberData.distance} km </Text>
+          </View>
+          <View style={styles.dataContainer}>
+             <Text style={styles.dataText}>🚗 {uberData.type}</Text>
+             <Text style={styles.dataText}>💵 {uberData.cost} $ </Text>
+          </View>
+       </View>
          <View style = {styles.detailsWrapper}>
                       <View style={styles.detailsContainer}>
                         <Image source={locationOnIcon} style={styles.locIcon} />
@@ -39,8 +50,8 @@ const RideDetailModal = ({isVisible = false , closeVisible = () => {},modalBackg
                       </View>
          </View>
          <View style={styles.buttonsWrapper}>
-                  <CustomButton label={"Confirm"} />
-                  <CustomButton label={"Back"} />
+                  <CustomButton label={"Confirm"} onPress={confirmPress}  />
+                  <CustomButton label={"Back"}  onPress={closeVisible} />
          </View>
      </BaseModal>
   )
@@ -55,6 +66,15 @@ const styles = StyleSheet.create({
      titleWrapper : {
          borderBottomColor:app_colors.neutral_gray,borderBottomWidth:1,marginBottom:app_spaces.small
      },
+     datasWrapper : {
+       flexDirection : "column",
+    },
+    dataContainer : {
+       flexDirection:"row",alignItems:"center"
+    },
+    dataText : {
+     flex:1, fontSize : app_fontSize.small,fontWeight:app_fontWeight.small,padding:app_spaces.small,borderBottomColor:app_colors.neutral_gray,borderBottomWidth:1
+    },
       detailsWrapper : {
               marginTop : app_spaces.small , marginBottom: app_spaces.middle
          },
