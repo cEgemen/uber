@@ -1,10 +1,10 @@
 
-import {FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {BackHandler, FlatList, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
 import { app_colors, app_fontSize, app_fontWeight, app_spaces } from '../../constands/appSizes'
 import GooglePlacesSearch from '../../components/GooglePlacesSearch'
 import { useDispatch, useSelector } from 'react-redux'
-import { setEndLocation } from '../../managment/slices/locationSlice'
+import { resEndLocation, setEndLocation } from '../../managment/slices/locationSlice'
 import RideHomeOptionCard from '../../components/buttons/RideHomeOptionButton'
 import transportIcon from "../../assets/icons/transport.png"
 import lunchIcon from "../../assets/icons/lunch.png"
@@ -22,7 +22,7 @@ const Home = () => {
          const lon = details.geometry.location.lng
          dispatch(setEndLocation({description,title,lat,lon}))
   }
-  
+
   const onPress = () => {
       router.push("/details")
   }

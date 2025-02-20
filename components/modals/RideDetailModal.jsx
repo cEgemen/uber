@@ -28,8 +28,8 @@ const RideDetailModal = ({
         </View>
         <View style={styles.datasWrapper}>
           <View style={styles.dataContainer}>
-             <Text style={styles.dataText}>⌛ {uberData.duration} dk </Text>
-             <Text style={styles.dataText}>🛞 {uberData.distance} km </Text>
+             <Text style={styles.dataText}>⌛ {(uberData.duration.toFixed(2))} dk </Text>
+             <Text style={styles.dataText}>🛞 {(uberData.distance.toFixed(2))} km </Text>
           </View>
           <View style={styles.dataContainer}>
              <Text style={styles.dataText}>🚗 {uberData.type}</Text>

@@ -23,13 +23,19 @@ const locationSlice = createSlice({
                state.endLocation.lat = action.payload.lat;
                state.endLocation.lon = action.payload.lon;
           },
+          resEndLocation : (state,action) => {
+               state.endLocation.description = null;
+               state.endLocation.title = null;
+               state.endLocation.lat = null;
+               state.endLocation.lon = null
+          },
           setLocationData : (state , action) => {
                state.locationData.distance = action.payload.distance;
                state.locationData.duration = action.payload.duration;
-          }
+          },
      }
 })
 
- export  const {setEndLocation,setStartLoction,setLocationData} = locationSlice.actions
+ export  const {setEndLocation,setStartLoction,setLocationData,resEndLocation} = locationSlice.actions
 
  export default locationSlice.reducer

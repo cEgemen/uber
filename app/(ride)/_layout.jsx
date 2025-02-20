@@ -13,7 +13,7 @@ const RideLayout = () => {
   const dispatch = useDispatch()
   const [modalState , setModalState] = useState(false)
   const backHome = () => {
-       router.push("/home")
+       router.dismissTo("/home")
   } 
 
   const okPress = () => {

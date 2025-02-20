@@ -42,8 +42,8 @@ const Details = () => {
   return (
     <View style={styles.wrapper}>
        <View style = {styles.headerWrapper}>
-             <Text style={styles.header}>⌛ {locationData.duration} dk</Text>
-             <Text style={styles.header}>🛤️ {locationData.distance} km</Text>
+             <Text style={styles.header}>⌛ {(locationData.duration.toFixed(2))} dk</Text>
+             <Text style={styles.header}>🛤️ {(locationData.distance.toFixed(2))} km</Text>
        </View>
      
        <View style={styles.buttonsWrapper}>

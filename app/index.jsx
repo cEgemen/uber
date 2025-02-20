@@ -4,16 +4,23 @@ import GooglePlacesSearch from '../components/GooglePlacesSearch';
 import HomeOptionsCard from '../components/cards/HomeOptionsCard';
 import trasportIcon from "../assets/icons/transport.png"
 import lunchIcon from "../assets/icons/lunch.png"
-import { router } from 'expo-router';
+import { router, useFocusEffect } from 'expo-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { setStartLoction } from '../managment/slices/locationSlice';
+import { setStartLoction,resEndLocation } from '../managment/slices/locationSlice';
 import FavLocCard from '../components/cards/FavLocCard';
+import { useCallback, useEffect } from 'react';
 
 export default function Index() {
   const {startLocation} = useSelector(state => state.loc)    
   const {favList} = useSelector(state => state.favLoc)
   const dispatch = useDispatch()
   const isDisable =  startLocation.lat === null || startLocation.lon === null; 
+  
+  useFocusEffect(useCallback(() => {
+           console.log("first page")
+           dispatch(resEndLocation())
+  },[]))
+
   const searchOnPress = (data,details) => {
        const lat = details.geometry.location.lat
        const lon = details.geometry.location.lng
